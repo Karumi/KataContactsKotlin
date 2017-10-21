@@ -1,7 +1,7 @@
 package com.karumi.katagenda.ui
 
 import com.karumi.katagenda.domain.Contact
-import java.util.*
+import java.util.Scanner
 
 class SysOutContactsListView : ContactsListPresenter.View {
 

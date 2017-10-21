@@ -1,10 +1,8 @@
 package com.karumi.katagenda.common.repository
 
-import java.util.*
-
 class InMemoryDataSource<T> : DataSource<T> {
 
-    private val values = LinkedList<T>()
+    private val values = ArrayList<T>()
 
     override val all: List<T>
         get() = values

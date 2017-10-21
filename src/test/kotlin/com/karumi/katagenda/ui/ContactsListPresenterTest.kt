@@ -10,11 +10,8 @@ import com.nhaarman.mockito_kotlin.whenever
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
-import org.mockito.ArgumentCaptor
-import org.mockito.Captor
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
-import java.util.*
 
 class ContactsListPresenterTest {
 
@@ -131,7 +128,7 @@ class ContactsListPresenterTest {
 
     private fun givenTheContactIsAddedCorrectly(contact: Contact) {
         whenever(addContact!!.execute(contact)).thenReturn(contact)
-        val newContacts = LinkedList<Contact>()
+        val newContacts = ArrayList<Contact>()
         newContacts.add(contact)
         whenever(getContacts!!.execute()).thenReturn(newContacts)
     }
@@ -141,11 +138,13 @@ class ContactsListPresenterTest {
     }
 
     private fun givenTheAgendaIsNotEmpty(): List<Contact> {
-        val contacts = LinkedList<Contact>()
-        for (i in 0..ANY_NUMBER_OF_CONTACTS - 1) {
-            val contact = Contact(ANY_FIRST_NAME, ANY_LAST_NAME, ANY_PHONE_NUMBER)
-            contacts.add(contact)
-        }
+        val contacts = ArrayList<Contact>()
+        contacts.addAll(
+                (0 to ANY_NUMBER_OF_CONTACTS - 1)
+                        .toList()
+                        .map {
+                            Contact(ANY_FIRST_NAME, ANY_LAST_NAME, ANY_PHONE_NUMBER)
+                        })
         whenever(getContacts!!.execute()).thenReturn(contacts)
         return contacts
     }
