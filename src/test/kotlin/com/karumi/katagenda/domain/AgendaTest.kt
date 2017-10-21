@@ -19,7 +19,7 @@ class AgendaTest {
         val agenda = givenAnAgenda()
 
         val contacts = agenda.contacts
-        
+
         assertTrue(contacts.isEmpty())
     }
 
