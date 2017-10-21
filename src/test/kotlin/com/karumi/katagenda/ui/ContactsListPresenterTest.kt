@@ -3,13 +3,16 @@ package com.karumi.katagenda.ui
 import com.karumi.katagenda.domain.Contact
 import com.karumi.katagenda.usecase.AddContact
 import com.karumi.katagenda.usecase.GetContacts
+import com.nhaarman.mockito_kotlin.argumentCaptor
+import com.nhaarman.mockito_kotlin.times
+import com.nhaarman.mockito_kotlin.verify
+import com.nhaarman.mockito_kotlin.whenever
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.mockito.ArgumentCaptor
 import org.mockito.Captor
 import org.mockito.Mock
-import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
 import java.util.*
 
@@ -26,7 +29,6 @@ class ContactsListPresenterTest {
     @Mock private val view: ContactsListPresenter.View? = null
     @Mock private val getContacts: GetContacts? = null
     @Mock private val addContact: AddContact? = null
-    @Captor private val contactsCaptor: ArgumentCaptor<List<Contact>>? = null
 
     @Before
     fun setUp() {
@@ -80,9 +82,12 @@ class ContactsListPresenterTest {
         presenter.onInitialize()
         presenter.onAddContactOptionSelected()
 
-        verify(view, times(2))?.showContacts(contactsCaptor!!.capture())
-        val newContacts = contactsCaptor!!.getAllValues().get(1)
-        assertTrue(newContacts.contains(contactToCreate))
+        argumentCaptor<List<Contact>>().apply {
+            verify(view, times(2))?.showContacts(capture())
+
+            assertTrue(allValues[1].contains(contactToCreate))
+        }
+
     }
 
     @Test
@@ -119,20 +124,20 @@ class ContactsListPresenterTest {
     }
 
     private fun givenTheUserTypesContactInfo(t: String, anyLastName: String, anyPhoneNumber: String) {
-        `when`(view?.newContactFirstName).thenReturn(t)
-        `when`(view?.newContactLastName).thenReturn(anyLastName)
-        `when`(view?.newContactPhoneNumber).thenReturn(anyPhoneNumber)
+        whenever(view?.newContactFirstName).thenReturn(t)
+        whenever(view?.newContactLastName).thenReturn(anyLastName)
+        whenever(view?.newContactPhoneNumber).thenReturn(anyPhoneNumber)
     }
 
     private fun givenTheContactIsAddedCorrectly(contact: Contact) {
-        `when`(addContact!!.execute(contact)).thenReturn(contact)
+        whenever(addContact!!.execute(contact)).thenReturn(contact)
         val newContacts = LinkedList<Contact>()
         newContacts.add(contact)
-        `when`(getContacts!!.execute()).thenReturn(newContacts)
+        whenever(getContacts!!.execute()).thenReturn(newContacts)
     }
 
     private fun givenTheAgendaIsEmpty() {
-        `when`(getContacts!!.execute()).thenReturn(emptyList<Contact>())
+        whenever(getContacts!!.execute()).thenReturn(emptyList<Contact>())
     }
 
     private fun givenTheAgendaIsNotEmpty(): List<Contact> {
@@ -141,7 +146,7 @@ class ContactsListPresenterTest {
             val contact = Contact(ANY_FIRST_NAME, ANY_LAST_NAME, ANY_PHONE_NUMBER)
             contacts.add(contact)
         }
-        `when`(getContacts!!.execute()).thenReturn(contacts)
+        whenever(getContacts!!.execute()).thenReturn(contacts)
         return contacts
     }
 
