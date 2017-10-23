@@ -5,7 +5,7 @@ import com.karumi.katagenda.domain.Contact
 
 class GetContacts(private val agenda: Agenda) {
 
-    fun execute(): List<Contact> {
+    operator fun invoke(): List<Contact> {
         return agenda.contacts
     }
 }

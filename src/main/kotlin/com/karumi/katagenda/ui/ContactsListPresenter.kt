@@ -22,7 +22,7 @@ class ContactsListPresenter(view: ContactsListPresenter.View, private val getCon
         if (contactToAdd == null) {
             view.showDefaultError()
         } else {
-            addContact.execute(contactToAdd)
+            addContact(contactToAdd)
             loadContactsList()
         }
     }
@@ -32,18 +32,18 @@ class ContactsListPresenter(view: ContactsListPresenter.View, private val getCon
         val lastName = view.newContactLastName
         val phoneNumber = view.newContactPhoneNumber
         var contact: Contact? = null
-        if (isContactInfoValue(firstName, lastName, phoneNumber)) {
+        if (isContactInfoValid(firstName, lastName, phoneNumber)) {
             contact = Contact(firstName, lastName, phoneNumber)
         }
         return contact
     }
 
-    private fun isContactInfoValue(firstName: String, lastName: String, phoneNumber: String): Boolean {
+    private fun isContactInfoValid(firstName: String, lastName: String, phoneNumber: String): Boolean {
         return !firstName.isEmpty() && !lastName.isEmpty() && !phoneNumber.isEmpty()
     }
 
     private fun loadContactsList() {
-        val contactList = getContacts.execute()
+        val contactList = getContacts()
 
         when {
             contactList.isEmpty() -> view.showEmptyCase()

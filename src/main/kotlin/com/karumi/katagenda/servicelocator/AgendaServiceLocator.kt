@@ -16,30 +16,24 @@ object AgendaServiceLocator {
 
     val contactsListPresenter: ContactsListPresenter
         get() {
-            val sysOutView = sysOutView
-            val getContacts = contacts
-            val addContact = addContact
             return ContactsListPresenter(sysOutView, getContacts, addContact)
         }
 
     private val sysOutView: SysOutContactsListView
         get() = SysOutContactsListView()
 
-    private val contacts: GetContacts
+    private val getContacts: GetContacts
         get() {
-            val agenda = agenda
             return GetContacts(agenda)
         }
 
     private val addContact: AddContact
         get() {
-            val agenda = agenda
             return AddContact(agenda)
         }
 
     private val agenda: Agenda
         get() {
-            val contactsRepository = contactsRepository
             return Agenda(contactsRepository)
         }
 
