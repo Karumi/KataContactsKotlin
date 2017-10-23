@@ -134,7 +134,7 @@ class ContactsListPresenterTest {
     }
 
     private fun givenTheAgendaIsEmpty() {
-        whenever(getContacts.invoke()).thenReturn(emptyList<Contact>())
+        whenever(getContacts.invoke()).thenReturn(emptyList())
     }
 
     private fun givenTheAgendaIsNotEmpty(): List<Contact> {
