@@ -6,6 +6,8 @@ import com.karumi.katagenda.ui.ContactsListPresenter
 
 class AgendaApplication {
 
+    private val presenter: ContactsListPresenter by AgendaServiceLocator.getContactsListPresenter()
+
     companion object {
         @JvmStatic
         fun main(args: Array<String>) =
@@ -14,17 +16,15 @@ class AgendaApplication {
     }
 
     private fun main() {
-        val presenter = getPresenter()
+        initPresenter()
         presenter.onInitialize()
         while (true) {
             presenter.onAddContactOptionSelected()
         }
     }
 
-    private fun getPresenter(): ContactsListPresenter {
-        val contactsListPresenter = AgendaServiceLocator.contactsListPresenter
-        hookPresenterStopEvent(contactsListPresenter)
-        return contactsListPresenter
+    private fun initPresenter() {
+        hookPresenterStopEvent(presenter)
     }
 
     private fun <T : Presenter.View> hookPresenterStopEvent(presenter: Presenter<T>) {
