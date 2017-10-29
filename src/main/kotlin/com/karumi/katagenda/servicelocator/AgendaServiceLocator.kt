@@ -1,6 +1,5 @@
 package com.karumi.katagenda.servicelocator
 
-import com.karumi.katagenda.AgendaApplication
 import com.karumi.katagenda.common.repository.InMemoryDataSource
 import com.karumi.katagenda.common.repository.Repository
 import com.karumi.katagenda.domain.Agenda
