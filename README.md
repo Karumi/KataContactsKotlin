@@ -21,6 +21,8 @@
  - The data origin will change in the future to consume a remote API.
  - There is no persistence between execution.
 
+---
+
 ## Resources
 
 * [Kata Contacts in Java](https://github.com/Karumi/KataContactsJava)
