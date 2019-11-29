@@ -3,10 +3,10 @@ package com.karumi.katagenda.ui
 import com.karumi.katagenda.domain.Contact
 import com.karumi.katagenda.usecase.AddContact
 import com.karumi.katagenda.usecase.GetContacts
-import com.nhaarman.mockito_kotlin.argumentCaptor
-import com.nhaarman.mockito_kotlin.times
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.whenever
+import com.nhaarman.mockitokotlin2.argumentCaptor
+import com.nhaarman.mockitokotlin2.times
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
