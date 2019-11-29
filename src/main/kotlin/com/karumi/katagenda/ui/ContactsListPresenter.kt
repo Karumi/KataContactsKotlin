@@ -6,7 +6,7 @@ import com.karumi.katagenda.usecase.AddContact
 import com.karumi.katagenda.usecase.GetContacts
 
 class ContactsListPresenter(
-    view: ContactsListPresenter.View,
+    view: View,
     private val getContacts: GetContacts,
     private val addContact: AddContact
 ) : Presenter<ContactsListPresenter.View>(view) {
@@ -41,9 +41,11 @@ class ContactsListPresenter(
         return contact
     }
 
-    private fun isContactInfoValid(firstName: String, lastName: String, phoneNumber: String): Boolean {
-        return !firstName.isEmpty() && !lastName.isEmpty() && !phoneNumber.isEmpty()
-    }
+    private fun isContactInfoValid(
+        firstName: String,
+        lastName: String,
+        phoneNumber: String
+    ): Boolean = firstName.isNotEmpty() && lastName.isNotEmpty() && phoneNumber.isNotEmpty()
 
     private fun loadContactsList() {
         val contactList = getContacts()

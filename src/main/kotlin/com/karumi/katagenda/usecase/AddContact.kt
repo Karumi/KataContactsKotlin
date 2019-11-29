@@ -5,7 +5,5 @@ import com.karumi.katagenda.domain.Contact
 
 class AddContact(private val agenda: Agenda) {
 
-    operator fun invoke(contact: Contact): Contact {
-        return agenda.addContact(contact)
-    }
+    operator fun invoke(contact: Contact): Contact = agenda.addContact(contact)
 }

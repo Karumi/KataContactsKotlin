@@ -16,11 +16,10 @@ import org.mockito.MockitoAnnotations
 class ContactsListPresenterTest {
 
     companion object {
-
-        private val ANY_NUMBER_OF_CONTACTS = 7
-        private val ANY_FIRST_NAME = "Pedro Vicente"
-        private val ANY_LAST_NAME = "Gomez Sanchez"
-        private val ANY_PHONE_NUMBER = "666666666"
+        private const val ANY_NUMBER_OF_CONTACTS = 7
+        private const val ANY_FIRST_NAME = "Pedro Vicente"
+        private const val ANY_LAST_NAME = "Gomez Sanchez"
+        private const val ANY_PHONE_NUMBER = "666666666"
     }
 
     @Mock private lateinit var view: ContactsListPresenter.View
@@ -146,9 +145,8 @@ class ContactsListPresenterTest {
         return contacts
     }
 
-    private fun givenAContactsListPresenter(): ContactsListPresenter {
-        return ContactsListPresenter(view, getContacts, addContact)
-    }
+    private fun givenAContactsListPresenter(): ContactsListPresenter =
+        ContactsListPresenter(view, getContacts, addContact)
 
     private fun givenTheUserAddsAContact(): Contact {
         val contact = Contact(ANY_FIRST_NAME, ANY_LAST_NAME, ANY_PHONE_NUMBER)

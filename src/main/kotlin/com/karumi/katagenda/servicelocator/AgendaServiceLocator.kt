@@ -16,10 +16,10 @@ object AgendaServiceLocator {
 
     private val IN_MEMORY_CONTACTS_DATA_SOURCE = InMemoryDataSource<Contact>()
 
-    fun getContactsListPresenter(): ReadOnlyProperty<Any?, ContactsListPresenter> = object : ReadOnlyProperty<Any?, ContactsListPresenter> {
-        override fun getValue(thisRef: Any?, property: KProperty<*>): ContactsListPresenter {
-            return ContactsListPresenter(sysOutView, getContacts, addContact)
-        }
+    fun getContactsListPresenter(): ReadOnlyProperty<Any?, ContactsListPresenter> =
+        object : ReadOnlyProperty<Any?, ContactsListPresenter> {
+          override fun getValue(thisRef: Any?, property: KProperty<*>): ContactsListPresenter =
+            ContactsListPresenter(sysOutView, getContacts, addContact)
     }
 
     private val sysOutView: SysOutContactsListView
