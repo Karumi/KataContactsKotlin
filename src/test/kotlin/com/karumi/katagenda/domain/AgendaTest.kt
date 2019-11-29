@@ -7,11 +7,11 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class AgendaTest {
-    companion object {
 
-        private val ANY_FIRST_NAME = "Pedro Vicente"
-        private val ANY_LAST_NAME = "Gomez Sanchez"
-        private val ANY_PHONE_NUMBER = "666666666"
+    companion object {
+        private const val ANY_FIRST_NAME = "Pedro Vicente"
+        private const val ANY_LAST_NAME = "Gomez Sanchez"
+        private const val ANY_PHONE_NUMBER = "666666666"
     }
 
     @Test
@@ -45,9 +45,7 @@ class AgendaTest {
         assertEquals(1, contacts.size)
     }
 
-    private fun givenAnyContact(): Contact {
-        return Contact(ANY_FIRST_NAME, ANY_LAST_NAME, ANY_PHONE_NUMBER)
-    }
+    private fun givenAnyContact(): Contact = Contact(ANY_FIRST_NAME, ANY_LAST_NAME, ANY_PHONE_NUMBER)
 
     private fun givenAnAgenda(): Agenda {
         val dataSource = InMemoryDataSource<Contact>()

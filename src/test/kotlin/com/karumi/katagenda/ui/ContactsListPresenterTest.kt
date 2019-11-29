@@ -3,10 +3,10 @@ package com.karumi.katagenda.ui
 import com.karumi.katagenda.domain.Contact
 import com.karumi.katagenda.usecase.AddContact
 import com.karumi.katagenda.usecase.GetContacts
-import com.nhaarman.mockito_kotlin.argumentCaptor
-import com.nhaarman.mockito_kotlin.times
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.whenever
+import com.nhaarman.mockitokotlin2.argumentCaptor
+import com.nhaarman.mockitokotlin2.times
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -16,11 +16,10 @@ import org.mockito.MockitoAnnotations
 class ContactsListPresenterTest {
 
     companion object {
-
-        private val ANY_NUMBER_OF_CONTACTS = 7
-        private val ANY_FIRST_NAME = "Pedro Vicente"
-        private val ANY_LAST_NAME = "Gomez Sanchez"
-        private val ANY_PHONE_NUMBER = "666666666"
+        private const val ANY_NUMBER_OF_CONTACTS = 7
+        private const val ANY_FIRST_NAME = "Pedro Vicente"
+        private const val ANY_LAST_NAME = "Gomez Sanchez"
+        private const val ANY_PHONE_NUMBER = "666666666"
     }
 
     @Mock private lateinit var view: ContactsListPresenter.View
@@ -84,7 +83,6 @@ class ContactsListPresenterTest {
 
             assertTrue(allValues[1].contains(contactToCreate))
         }
-
     }
 
     @Test
@@ -147,9 +145,8 @@ class ContactsListPresenterTest {
         return contacts
     }
 
-    private fun givenAContactsListPresenter(): ContactsListPresenter {
-        return ContactsListPresenter(view, getContacts, addContact)
-    }
+    private fun givenAContactsListPresenter(): ContactsListPresenter =
+        ContactsListPresenter(view, getContacts, addContact)
 
     private fun givenTheUserAddsAContact(): Contact {
         val contact = Contact(ANY_FIRST_NAME, ANY_LAST_NAME, ANY_PHONE_NUMBER)
@@ -157,5 +154,4 @@ class ContactsListPresenterTest {
                 contact.phoneNumber)
         return contact
     }
-
 }
