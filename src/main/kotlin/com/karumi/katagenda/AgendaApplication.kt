@@ -12,7 +12,6 @@ class AgendaApplication {
         @JvmStatic
         fun main(args: Array<String>) =
                 AgendaApplication().main()
-
     }
 
     private fun main() {

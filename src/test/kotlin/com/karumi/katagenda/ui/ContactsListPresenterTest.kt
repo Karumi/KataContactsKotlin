@@ -84,7 +84,6 @@ class ContactsListPresenterTest {
 
             assertTrue(allValues[1].contains(contactToCreate))
         }
-
     }
 
     @Test
@@ -157,5 +156,4 @@ class ContactsListPresenterTest {
                 contact.phoneNumber)
         return contact
     }
-
 }

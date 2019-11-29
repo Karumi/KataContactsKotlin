@@ -5,8 +5,11 @@ import com.karumi.katagenda.domain.Contact
 import com.karumi.katagenda.usecase.AddContact
 import com.karumi.katagenda.usecase.GetContacts
 
-class ContactsListPresenter(view: ContactsListPresenter.View, private val getContacts: GetContacts,
-                            private val addContact: AddContact) : Presenter<ContactsListPresenter.View>(view) {
+class ContactsListPresenter(
+    view: ContactsListPresenter.View,
+    private val getContacts: GetContacts,
+    private val addContact: AddContact
+) : Presenter<ContactsListPresenter.View>(view) {
 
     override fun onInitialize() {
         view.showWelcomeMessage()
