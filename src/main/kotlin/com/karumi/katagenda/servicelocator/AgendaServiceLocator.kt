@@ -18,8 +18,8 @@ object AgendaServiceLocator {
 
     fun getContactsListPresenter(): ReadOnlyProperty<Any?, ContactsListPresenter> =
         object : ReadOnlyProperty<Any?, ContactsListPresenter> {
-          override fun getValue(thisRef: Any?, property: KProperty<*>): ContactsListPresenter =
-            ContactsListPresenter(sysOutView, getContacts, addContact)
+            override fun getValue(thisRef: Any?, property: KProperty<*>): ContactsListPresenter =
+                ContactsListPresenter(sysOutView, getContacts, addContact)
     }
 
     private val sysOutView: SysOutContactsListView
